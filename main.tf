@@ -28,5 +28,5 @@ terraform {
 
 provider "google" {
   project     = "my-project-123-477113"
-  region      = "us-east-1"
+  region      = "us-central-1"
 }
