@@ -16,3 +16,17 @@ resource "google_compute_instance" "demo-vm" {
 
   tags = ["demo"]
 }
+
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "google" {
+  project     = "my-project-123-477113"
+  region      = "us-east-1"
+}
