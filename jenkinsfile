@@ -1,0 +1,66 @@
+pipeline {
+    agent any
+
+    environment {
+        PROJECT_ID = "my-gcp-project"
+    }
+
+    stages {
+
+    stage('Authenticate to GCP') {
+      steps {
+        withCredentials([file(credentialsId: 'gcp-sa-key', variable: 'GCP_KEY')]) {
+          sh '''
+            gcloud auth activate-service-account --key-file=$GCP_KEY
+            gcloud config set project $PROJECT_ID
+          '''
+        }
+      }
+    }
+
+        stage('Terraform Init') {
+            steps {
+                sh '''
+                  terraform init
+                '''
+            }
+        }
+
+        stage('Terraform Validate') {
+            steps {
+                sh '''
+                  terraform validate
+                '''
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                sh '''
+                  terraform plan -out=tfplan
+                '''
+            }
+        }
+
+        stage('Terraform Apply') {
+            input {
+                message "Do you want to apply Terraform changes?"
+                ok "Apply"
+            }
+            steps {
+                sh '''
+                  terraform apply -auto-approve tfplan
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Terraform deployment successful"
+        }
+        failure {
+            echo "❌ Terraform deployment failed"
+        }
+    }
+}
