@@ -1,7 +1,6 @@
 resource "google_compute_instance" "demo-vm" {
   name         = "my-demo-vm"
   machine_type = "e2-micro"
-  zone         = "us-central1-c"
 
   boot_disk {
     initialize_params {
