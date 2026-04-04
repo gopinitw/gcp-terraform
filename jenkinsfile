@@ -43,10 +43,6 @@ pipeline {
         }
 
         stage('Terraform Apply') {
-            input {
-                message "Do you want to apply Terraform changes?"
-                ok "Apply"
-            }
             steps {
                 sh '''
                   terraform apply -auto-approve tfplan
