@@ -1,11 +1,5 @@
 pipeline {
-        agent {
-        docker {
-            image 'hashicorp/terraform:1.6.6'
-            args '--entrypoint=""'
-        }
-    }
-
+        agent any
 
     environment {
         PROJECT_ID = "dev-uk-123"
