@@ -30,3 +30,8 @@ provider "google" {
   project     = "dev-uk-123"
   region      = "us-central1"
 }
+
+provider "google" {
+  project     = "dev-uk-123"
+  region      = "us-central1"
+}
