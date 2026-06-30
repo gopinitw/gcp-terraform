@@ -27,22 +27,6 @@ terraform {
 }
 
 provider "google" {
-  project     = "dev-uk-123"
-  region      = "us-central1"
-}
-
-provider "google" {
-  project     = "dev-uk-123"
-  region      = "us-central1"
-}
-
-
-resource "google_storage_bucket" "demo-bucket" {
-  name     = "my-demo-bucket"
-  location = "US"
-}
-
-provider "google" {
-  project     = "dev-uk-123"
+  project     = "project-addaa4da-17e4-4d6e-ab0"
   region      = "us-central1"
 }
