@@ -2,16 +2,14 @@ pipeline {
         agent any
 
     environment {
-        PROJECT_ID = "dev-uk-123"
+        PROJECT_ID = "project-addaa4da-17e4-4d6e-ab0"
     }
 
     stages {
 
     stage('Authenticate to GCP') {
       steps {
-        withCredentials([file(credentialsId: 'gcp-sa-key', variable: 'GCP_KEY')]) {
           sh '''
-            gcloud auth activate-service-account --key-file=$GCP_KEY
             gcloud config set project $PROJECT_ID
           '''
         }
