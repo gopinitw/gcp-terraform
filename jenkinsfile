@@ -7,15 +7,6 @@ pipeline {
 
     stages {
 
-    stage('Authenticate to GCP') {
-      steps {
-          sh '''
-            gcloud config set project $PROJECT_ID
-          '''
-        }
-      }
-    }
-
         stage('Terraform Init') {
             steps {
                 sh '''
@@ -46,15 +37,6 @@ pipeline {
                   terraform apply -auto-approve tfplan
                 '''
             }
-        }
-    }
-
-    post {
-        success {
-            echo "✅ Terraform deployment successful"
-        }
-        failure {
-            echo "❌ Terraform deployment failed"
         }
     }
 }
